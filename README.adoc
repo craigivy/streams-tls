@@ -1,0 +1,72 @@
+= streams-bare-bones
+
+A bare bones example of how to setup streams (Kafka) v1.2 on openshift
+Note these instructions use the following configuration:
+
+- project/namespace: kafka
+- kafka cluster name: kafka-test
+- topics: my-topic,prod-topic
+
+NOTE: In order to install the cluster operator a user with cluster administrator
+
+NOTE: If projects have quotas, make sure you have enough resources this was tested with 10 CPUs and 12 G of memory.  These limits can be verified with the command 'oc describe quota kafka-quota'
+
+== Install cluster operator
+
+After logging into openshift via the cli create a new project
+----
+oc new-project kafka
+----
+
+Create the cluster operator in the kafka project/namespace
+----
+oc apply -f install/cluster-operator -n kafka
+oc apply -f examples/templates/cluster-operator -n kafka
+----
+
+Create the kafka cluster in the name space
+----
+oc apply -f examples/kafka/kafka-ephemeral.yaml
+----
+
+Create a topic (make sure the 3 zookeeper and 3 kafka pods are started)
+----
+oc apply -f examples/topic/kafka-topic.yaml
+----
+
+Create a TLS based user
+----
+oc apply -f examples/user/kafka-user.yaml
+----
+
+
+
+Verify the topic exists with the following commands
+----
+oc rsh kafka-test-kafka-1
+
+bin/kafka-topics.sh --list --bootstrap-server localhost:9092
+
+bin/kafka-topics.sh --describe --bootstrap-server localhost:9092 --topic my-topic
+----
+
+Send and receive messages across the kafka cluster
+
+Create a consumer. Create a new terminal and run the following commands
+----
+oc rsh kafka-test-kafka-0
+bin/kafka-console-consumer.sh --bootstrap-server localhost:9092 --topic my-topic --from-beginning
+----
+
+Create a producer and send messages.  Create a new terminal and run the following commands.
+After running the commands enter messages and view them in the consumer terminal.
+----
+oc rsh kafka-test-kafka-2
+bin/kafka-console-producer.sh --broker-list localhost:9092 --topic my-topic
+bin/kafka-console-consumer.sh --bootstrap-server localhost:9092 --topic test-topic --from-beginning
+----
+
+Create a more advanced topic with 3 replicas and 20 partitions
+----
+oc apply -f examples/topic/prod-topic.yaml
+----
