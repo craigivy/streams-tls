@@ -6,7 +6,7 @@
     <modelVersion>4.0.0</modelVersion>
 
 
-    <groupId>org.apache.camel.examples</groupId>
+    <groupId>org.apache.camel.craigivy</groupId>
     <artifactId>camel-kafka-tls</artifactId>
     <version>1.0.0-SNAPSHOT</version>
 
