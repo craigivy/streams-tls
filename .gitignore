@@ -3,7 +3,7 @@ producer/*.ts
 producer/*.crt
 
 # ignore mavens target dir
-*/target/**
+*/*/target/**
 
 # Created by https://www.gitignore.io/api/intellij,visualstudiocode
 # Edit at https://www.gitignore.io/?templates=intellij,visualstudiocode
