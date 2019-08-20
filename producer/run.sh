@@ -1,5 +1,7 @@
 #!/bin/bash
 
+export CAMEL_COMPONENT_KAFKA_CONFIGURATION_BROKERS="kafka-test-kafka-bootstrap-kafka.apps.cluster-tracs-8e50.tracs-8e50.openshiftworkshop.com:443"
+
 export KAFKA_CLUSTER_CRT="-----BEGIN CERTIFICATE-----
 MIIDLTCCAhWgAwIBAgIJAPh4Z/WpZUWsMA0GCSqGSIb3DQEBCwUAMC0xEzARBgNV
 BAoMCmlvLnN0cmltemkxFjAUBgNVBAMMDWNsdXN0ZXItY2EgdjAwHhcNMTkwODE4
