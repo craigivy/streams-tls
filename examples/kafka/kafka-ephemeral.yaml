@@ -10,7 +10,9 @@ spec:
       type: simple
     listeners:
       plain: {}
-      tls: {}
+      tls:
+        authentication:
+          type: tls
       external:
         type: route
         authentication:
