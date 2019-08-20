@@ -73,3 +73,8 @@ In the `consumer` directory build and run the consumer.
 mvn clean install
 ./run.sh
 ----
+
+In the terminal out put you should see result similar to:
+----
+17:56:58.541 [Camel (camel-kafka-tls) thread #1 - timer://kickstartmyroute] INFO  route1 - Sending message: [Sending message: [Mon Aug 19 17:56:58 MST 2019]]
+----
