@@ -3,13 +3,21 @@
 A bare bones example of how to setup streams (Kafka) v1.2 on openshift using an external TLS client which uses client side TLS for authorization.
 Note these instructions use the following configuration:
 
-- project/namespace: kafka
-- kafka cluster name: kafka-test
-- topics: my-topic
+* project/namespace: kafka
+* kafka cluster name: kafka-test
+* topics: my-topic
+
+This project assumes the following are installed
+
+* oc client
+* java 8
+* maven
 
 NOTE: In order to install the cluster operator a user with cluster administrator
 
 NOTE: If projects have quotas, make sure you have enough resources this was tested with 10 CPUs and 12 G of memory.  These limits can be verified with the command 'oc describe quota kafka-quota'
+
+Thanks to Josh Reagan and his blog http://blog.joshdreagan.com/2019/05/30/streaming_in_the_cloud_with_camel_and_strimzi/[post] for all the good information and original client code.
 
 == Install cluster operator
 
